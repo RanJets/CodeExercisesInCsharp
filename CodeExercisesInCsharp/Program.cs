@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CodeExercisesInCsharp.Exercises;
+using System;
 
 namespace CodeExercisesInCsharp
 {
@@ -6,7 +7,12 @@ namespace CodeExercisesInCsharp
     {
         public static void Main(String[] Args)
         {
-            Console.WriteLine("Hello, World!");
+
+
+        
+            
+  
+           
         }
     }
  

@@ -39,7 +39,7 @@ namespace CodeExercisesInCsharp.Exercises
         public String decToHexadecimal(int num)
         {
             int remain;
-            char[] hexa = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'F' };
+            String hexa = "0123456789ABCDEF";
             String result = "";
             while (num > 0)
             {
@@ -95,6 +95,30 @@ namespace CodeExercisesInCsharp.Exercises
 
         }
 
+        public String binaryToHexadecimal(int binary)
+        {
+            int dec = 0, i=0;
+            while (binary>0)
+            {
+               int rem = binary % 10;
+               dec += rem * (int)Math.Pow(2,i);
+                i++;
+                binary /= 10;
+            }
+
+            i = 0;
+
+            String digits = "0123456789ABCDEF";
+            String hexa = "";
+            while (dec > 0)
+            {
+                hexa = digits[dec % 16] + hexa;
+                dec /= 16;
+            }
+
+            return hexa;
+
+        }
         #endregion
 
         #region Octal Conversion
@@ -115,48 +139,22 @@ namespace CodeExercisesInCsharp.Exercises
             return octal;
         }
 
+      
         #endregion
 
         #region HexaDecimal Conversion
 
-        public int hexaToDecimal(String hexVal)
+        public int hexadecimalToDecimal(String hexa)
         {
-            int len = hexVal.Length;
-
-            // Initializing base1 value
-            // to 1, i.e 16^0
-            int base1 = 1;
-
-            int dec_val = 0;
-
-            // Extracting characters as
-            // digits from last character
-            for (int i = len - 1; i >= 0; i--)
+            String digits = "0123456789ABDCEF";
+            int result = 0;
+            for (int i = 0; i < hexa.Length; i++)
             {
-                // if character lies in '0'-'9',
-                // converting it to integral 0-9
-                // by subtracting 48 from ASCII value
-                if (hexVal[i] >= '0' && hexVal[i] <= '9')
-                {
-                    dec_val += (hexVal[i] - 48) * base1;
-
-                    // incrementing base1 by power
-                    base1 = base1 * 16;
-                }
-
-                // if character lies in 'A'-'F' ,
-                // converting it to integral
-                // 10 - 15 by subtracting 55
-                // from ASCII value
-                else if (hexVal[i] >= 'A' && hexVal[i] <= 'F')
-                {
-                    dec_val += (hexVal[i] - 55) * base1;
-
-                    // incrementing base1 by power
-                    base1 = base1 * 16;
-                }
+                Char d = hexa[i];
+                int a = digits.IndexOf(d);
+                result = 16 * result + a;
             }
-            return dec_val;
+            return result;
         }
 
         #endregion
